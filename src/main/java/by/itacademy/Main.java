@@ -3,15 +3,12 @@ package by.itacademy;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello, Git!");
-        System.out.println(max(4, 7));
-
+        int x = 24;
+        int y = 13;
+        if(x > y ){
+            System.out.println("x больше y");
+        }else{
+            System.out.println("y больше х");
+        }
     }
-
-     public static int max(int x, int y) {
-         if (x > y) {
-             return x;
-         } else {
-             return y;
-         }
-     }
 }
