@@ -1,0 +1,40 @@
+package by.onliner;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class RegistationPage {
+    public ChromeDriver driver;
+    private final String TITLE = "";
+    private final String INPUT_EMAIL = "";
+    private final String INPUT_PASSWORD = "";
+    private final String INPUT_REPEAT_PASSWORD = "";
+    private final String BUTTON_SUBMIT = "";
+    private final String LINK_LOGIN = "";
+
+
+    public RegistationPage(ChromeDriver driver) {
+        this.driver = driver;
+    }
+
+    public String getTitleText() {
+        return driver.findElement(By.xpath(TITLE)).getText();
+    }
+
+    public void setInputEmail(String email) {
+        driver.findElement(By.xpath(INPUT_PASSWORD)).sendKeys(email);
+    }
+
+    public void setInputPassword(String password) {
+        driver.findElement(By.xpath(INPUT_PASSWORD)).sendKeys(password);
+
+
+    }
+
+    public void setInputRepeatPassword(String password) {
+        driver.findElement(By.xpath(INPUT_REPEAT_PASSWORD)).sendKeys(password);
+    }
+
+    public void setButtonSubmit(String password){
+        driver.findElement(By.xpath(INPUT_PASSWORD)).sendKeys(email);
+}
