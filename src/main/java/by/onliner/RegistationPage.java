@@ -35,6 +35,7 @@ public class RegistationPage {
         driver.findElement(By.xpath(INPUT_REPEAT_PASSWORD)).sendKeys(password);
     }
 
-    public void setButtonSubmit(String password){
-        driver.findElement(By.xpath(INPUT_PASSWORD)).sendKeys(email);
+    public void setButtonSubmit(String password) {
+        driver.findElement(By.xpath(INPUT_PASSWORD)).click();
+    }
 }
