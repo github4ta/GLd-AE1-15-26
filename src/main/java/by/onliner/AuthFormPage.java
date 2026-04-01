@@ -19,6 +19,8 @@ public class AuthFormPage extends ParentPage {
     private final String ERROR_MESSAGE_NAME = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[1]/div/div[2]/div/div/div[2]/div";
     private final String ERROR_MESSAGE_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[2]/div/div/div[2]/div";
 
+	private final String ERROR_PASSWORD_MESSAGE = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[2]/div/div/div[2]/div";
+
     public AuthFormPage(ChromeDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -63,4 +65,13 @@ public class AuthFormPage extends ParentPage {
     public String getErrorMessagePassword() {
         return driver.findElement(By.xpath(ERROR_MESSAGE_PASSWORD)).getText();
     }
+
+	public String getErrorPasswordMessageText() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement element = wait.until(
+				ExpectedConditions.visibilityOfElementLocated((By.xpath(ERROR_PASSWORD_MESSAGE)))
+		);
+
+		return element.getText();
+	}
 }
