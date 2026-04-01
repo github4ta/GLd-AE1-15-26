@@ -25,4 +25,9 @@ public class RegistrationTest {
         Assertions.assertEquals("Укажите пароль", registrationPage.getErrorMessagePassword());
         Assertions.assertEquals("Укажите пароль", registrationPage.getErrorMessageRepeatPassword());
     }
+
+    @Test
+    public void testRG(){
+
+    }
 }
