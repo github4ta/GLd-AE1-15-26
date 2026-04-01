@@ -1,7 +1,8 @@
 package by.onliner;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class RegistrationTest {
@@ -24,5 +25,10 @@ public class RegistrationTest {
         Assertions.assertEquals("", registrationPage.getErrorMessageEmail());
         Assertions.assertEquals("", registrationPage.getErrorMessagePassword());
         Assertions.assertEquals("", registrationPage.getErrorMessageRepeatPassword());
+    }
+
+    @Test
+    public void testRG(){
+
     }
 }
