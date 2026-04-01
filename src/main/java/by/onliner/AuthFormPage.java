@@ -17,6 +17,7 @@ public class AuthFormPage extends ParentPage {
     private final String LINK_FORGOT_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[4]/div[2]/a";
     private final String BUTTON_CLOSE = "//*[@id=\"auth-container\"]/div/div[1]/div[2]";
     private final String ERROR_MESSAGE_NAME = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[1]/div/div[2]/div/div/div[2]/div";
+    private final String ERROR_MESSAGE_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[2]/div/div/div[2]/div";
 
     public AuthFormPage(ChromeDriver driver) {
         this.driver = driver;
@@ -53,5 +54,13 @@ public class AuthFormPage extends ParentPage {
 
     public String getErrorMessageName() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_NAME))).getText();
+    }
+
+    public String getErrorMessageNameText() {
+        return driver.findElement(By.xpath(ERROR_MESSAGE_NAME)).getText();
+    }
+
+    public String getErrorMessagePassword() {
+        return driver.findElement(By.xpath(ERROR_MESSAGE_PASSWORD)).getText();
     }
 }
