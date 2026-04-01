@@ -1,9 +1,11 @@
 package by.onliner;
 
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 public class RegistrationTest {
+
+    @Test
+    public void testRG(){
+
+    }
 
     @Test
     public void testRG003(){
