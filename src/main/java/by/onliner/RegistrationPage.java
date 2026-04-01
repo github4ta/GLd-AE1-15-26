@@ -12,7 +12,7 @@ public class RegistrationPage  extends ParentPage {
     private final String LINK_LOGIN = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[10]/a";
     private final String ERROR_MESSAGE_EMAIL = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[5]/div/div/div[2]/div";
     private final String ERROR_MESSAGE_PASSWORD = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[6]/div/div/div[2]/div";
-
+    private final String ERROR_MESSAGE_REPEAT_PASSWORD = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[8]/div/div/div[2]/div";
 
     public RegistrationPage(ChromeDriver driver) {
         this.driver = driver;
@@ -42,11 +42,15 @@ public class RegistrationPage  extends ParentPage {
         driver.findElement(By.xpath(LINK_LOGIN)).click();
     }
 
-    public String getErrorMessageEmail(){
+    public String getErrorMessageEmail() {
         return driver.findElement(By.xpath(ERROR_MESSAGE_EMAIL)).getText();
     }
 
-    public String getErrorMesagePassword(){
+    public String getErrorMessagePassword() {
         return driver.findElement(By.xpath(ERROR_MESSAGE_PASSWORD)).getText();
+    }
+
+    public String getErrorMessageRepeatPassword() {
+        return driver.findElement(By.xpath(ERROR_MESSAGE_REPEAT_PASSWORD)).getText();
     }
 }
