@@ -3,8 +3,7 @@ package by.onliner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class AuthFormPage {
-    private ChromeDriver driver;
+public class AuthFormPage extends ParentPage {
     private final String TITEL = "//*[@id=\"auth-container\"]/div/div[2]/div/div[1]";
     private final String INPUT_NAME = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[1]/div/div[2]/div/div/div/div/input";
     private final String INPUT_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[2]/div/div/div/div/input";

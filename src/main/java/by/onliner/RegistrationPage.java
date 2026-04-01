@@ -3,8 +3,7 @@ package by.onliner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class RegistrationPage {
-    private ChromeDriver driver;
+public class RegistrationPage  extends ParentPage {
     private final String TITLE = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[1]";
     private final String INPUT_EMAIL = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[5]/div/div/div/div/input";
     private final String INPUT_PASSWORD = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[6]/div/div/div/div/input";
