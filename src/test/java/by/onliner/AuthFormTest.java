@@ -15,7 +15,7 @@ public class AuthFormTest {
         AuthFormPage authFormPage = new AuthFormPage(driver);
         authFormPage.clickButtonSubmit();
 
-        String getErrorMessageNameText = authFormPage.getErrorMessageNameText();
+        String getErrorMessageNameText = authFormPage.getErrorMessageName();
 
         Assertions.assertEquals("Укажите ник или e-mail", getErrorMessageNameText);
 
