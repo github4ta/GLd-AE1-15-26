@@ -58,15 +58,6 @@ public class AuthFormPage extends ParentPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_NAME))).getText();
     }
     public String getErrorMessagePassword() {
-        return driver.findElement(By.xpath(ERROR_MESSAGE_PASSWORD)).getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_PASSWORD))).getText();
     }
-
-	public String getErrorPasswordMessageText() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		WebElement element = wait.until(
-				ExpectedConditions.visibilityOfElementLocated((By.xpath(ERROR_PASSWORD_MESSAGE)))
-		);
-
-		return element.getText();
-	}
 }
