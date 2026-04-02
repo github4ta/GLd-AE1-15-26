@@ -39,4 +39,23 @@ public class AuthFormTest {
         String textErrorMessageName = authFormPage.getErrorMessageName();
         Assertions.assertEquals("Укажите ник или e-mail", textErrorMessageName);
     }
+	@Test
+	public void testAF002(){
+		ChromeDriver driver = new ChromeDriver();
+		HomePage homePage = new HomePage(driver);
+
+		homePage.open();
+		AuthFormPage authFormPage = new AuthFormPage(driver);
+		driver.manage().window().maximize();
+
+		homePage.clickButtonAuth();
+		authFormPage.setInputName("test@test.com");
+		authFormPage.setInputPassword("");
+		authFormPage.clickButtonSubmit();
+
+		String textActualError = authFormPage.getErrorPasswordMessageText();
+
+		Assertions.assertEquals("Укажите пароль", textActualError);
+		driver.quit();
+	}
 }
