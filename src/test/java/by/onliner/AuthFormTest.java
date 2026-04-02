@@ -9,18 +9,17 @@ public class AuthFormTest {
     public void testAF001(){
         ChromeDriver driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
+        driver.manage().window().maximize();
 
         homePage.open();
         homePage.clickButtonAuth();
         AuthFormPage authFormPage = new AuthFormPage(driver);
         authFormPage.clickButtonSubmit();
 
-        String getErrorMessageNameText = authFormPage.getErrorMessageNameText();
-
+        String getErrorMessageNameText = authFormPage.getErrorMessageName();
         Assertions.assertEquals("Укажите ник или e-mail", getErrorMessageNameText);
 
         String getErrorMessagePasswordText = authFormPage.getErrorMessagePassword();
-
         Assertions.assertEquals("Укажите пароль", getErrorMessagePasswordText);
     }
     @Test
@@ -38,6 +37,7 @@ public class AuthFormTest {
 
         String textErrorMessageName = authFormPage.getErrorMessageName();
         Assertions.assertEquals("Укажите ник или e-mail", textErrorMessageName);
+        driver.quit();
     }
 	@Test
 	public void testAF002(){
@@ -53,7 +53,7 @@ public class AuthFormTest {
 		authFormPage.setInputPassword("");
 		authFormPage.clickButtonSubmit();
 
-		String textActualError = authFormPage.getErrorPasswordMessageText();
+		String textActualError = authFormPage.getErrorMessagePassword();
 
 		Assertions.assertEquals("Укажите пароль", textActualError);
 		driver.quit();
