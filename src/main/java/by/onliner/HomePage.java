@@ -8,6 +8,7 @@ public class HomePage extends ParentPage {
     private final String INPUT_SEARCH = "//*[@id=\"fast-search\"]/div/input";
     private final String BUTTON_AUTH = "//*[@id=\"userbar\"]/div[2]/div/div/div[1]";
     private final String COPY_RIGHTS = "/html/body/div[4]/footer/div/div/div/div[2]/div[2]";
+    private final String COOKIES = "//*[@id=\"submit-button\"]";
 
     public HomePage(ChromeDriver driver) {
         this.driver = driver;
@@ -27,5 +28,9 @@ public class HomePage extends ParentPage {
 
     public String getCopyRights() {
         return driver.findElement(By.xpath(COPY_RIGHTS)).getText();
+    }
+
+    public void acceptCookies() {
+        driver.findElement(By.xpath(COOKIES)).click();
     }
 }
