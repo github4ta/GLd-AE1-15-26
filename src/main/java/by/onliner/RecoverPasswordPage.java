@@ -12,6 +12,7 @@ public class RecoverPasswordPage extends ParentPage {
     private final String BUTTON_AUTH = "//*[@id=\"container\"]/div/div/div/div/div[2]/form/div[4]/button";
     private final String ERROR_MESSAGE_NOT_REGISTER = "//*[@id=\"container\"]/div/div/div/div/div[2]/form/div[3]/div/div/div/div[2]/div";
     private final String EXTENDED_DESCRIPTION_ERROR = "//*[@id=\"container\"]/div/div/div/div/div[2]/form/div[3]/div/div/div/div[1]/div/div/div[2]/div";
+    private final String SHOW_USER_NOT_FINISHED_REGISTER = "//*[@id=\"container\"]/div/div/div/div/div[2]/form/div[3]/div/div/div/div[2]/div";
 
     public RecoverPasswordPage(ChromeDriver driver) {
         this.driver = driver;
@@ -36,5 +37,8 @@ public class RecoverPasswordPage extends ParentPage {
 
     public String getExtendedDescriptionError() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(EXTENDED_DESCRIPTION_ERROR))).getText();
+    }
+    public String getShowUserNotFinishedRegister() {
+        return driver.findElement(By.xpath(SHOW_USER_NOT_FINISHED_REGISTER)).getText();
     }
 }
