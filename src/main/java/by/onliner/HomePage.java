@@ -22,6 +22,10 @@ public class HomePage extends ParentPage {
         driver.findElement(By.xpath(BUTTON_AUTH)).click();
     }
 
+    public String getButtonAuthText() {
+        return driver.findElement(By.xpath(BUTTON_AUTH)).getText();
+    }
+
     public void setInputSearch(String text) {
         driver.findElement(By.xpath(INPUT_SEARCH)).sendKeys(text);
     }
