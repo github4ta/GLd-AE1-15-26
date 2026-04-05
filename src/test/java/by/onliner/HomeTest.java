@@ -27,4 +27,15 @@ public class HomeTest {
         String textActualButtonAuth = homePage.getButtonAuthText();
         Assertions.assertEquals("Вход", textActualButtonAuth);
     }
+
+    @Test
+    public void HP001(){
+        ChromeDriver driver = new ChromeDriver();
+        HomePage homePage = new HomePage(driver);
+
+        homePage.open();
+        driver.manage().window().maximize();
+
+        Assertions.assertEquals("Поиск в Каталоге.", homePage.getPartInputSearchText());
+    }
 }
