@@ -9,7 +9,6 @@ public class RecoverPasswordTest {
     public void RE002() {
         ChromeDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        HomePage homePage = new HomePage(driver);
 
         RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage(driver);
         recoverPasswordPage.open();
