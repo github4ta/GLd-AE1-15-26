@@ -77,4 +77,24 @@ public class RecoverPasswordTest {
 		Assertions.assertEquals("Вы не завершили процесс регистрации", recoverPasswordPage.getShowUserNotFinishedRegister());
 		driver.quit();
 	}
+
+	@Test
+	public void testRE005(){
+		ChromeDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		HomePage homePage = new HomePage(driver);
+		homePage.open();
+		homePage.clickButtonAuth();
+
+		AuthFormPage authFormPage = new AuthFormPage(driver);
+		authFormPage.clickLinkForgotPassword();
+
+		RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage(driver);
+		recoverPasswordPage.setInputEmail("375");
+		recoverPasswordPage.clickButtonAuth();
+
+		Assertions.assertEquals("Такой пользователь не зарегистрирован", recoverPasswordPage.getErrorMessageNotRegister());
+		driver.quit();
+
+	}
 }
