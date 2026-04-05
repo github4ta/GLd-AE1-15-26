@@ -71,6 +71,7 @@ public class RecoverPasswordTest {
 		authFormPage.clickLinkForgotPassword();
 
 		RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage(driver);
+		recoverPasswordPage.setInputEmail("test@test.com");
 		recoverPasswordPage.clickButtonAuth();
 
 		Assertions.assertEquals("Вы не завершили процесс регистрации", recoverPasswordPage.getShowUserNotFinishedRegister());
