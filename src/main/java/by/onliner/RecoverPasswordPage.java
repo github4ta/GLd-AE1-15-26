@@ -7,6 +7,7 @@ public class RecoverPasswordPage extends ParentPage {
     private final String TITLE = "//*[@id=\"container\"]/div/div/div/div/div[2]/form/div[1]";
     private final String INPUT_EMAIL = "//*[@id=\"container\"]/div/div/div/div/div[2]/form/div[3]/div/div/div/div[1]/div/div/div/div/input";
     private final String BUTTON_AUTH = "//*[@id=\"container\"]/div/div/div/div/div[2]/form/div[4]/button";
+    private final String UNREGISTRED_USER_ERROR = "//*[@id=\"container\"]/div/div/div/div/div[2]/form/div[3]/div/div/div/div[2]/div";
 
     public RecoverPasswordPage(ChromeDriver driver) {
         this.driver = driver;
@@ -20,7 +21,20 @@ public class RecoverPasswordPage extends ParentPage {
         driver.findElement(By.xpath(INPUT_EMAIL)).sendKeys(email);
     }
 
+    public void open() {
+        driver.get("https://profile.onliner.by/recover-password");
+    }
+
+    public void enterUsername(String text) {
+        driver.findElement(By.xpath(INPUT_EMAIL)).clear();
+        driver.findElement(By.xpath(INPUT_EMAIL)).sendKeys(text);
+    }
+
     public void clickButtonAuth() {
         driver.findElement(By.xpath(BUTTON_AUTH)).click();
+    }
+
+    public String unregistredUserError() {
+        return driver.findElement(By.xpath(UNREGISTRED_USER_ERROR)).getText();
     }
 }
