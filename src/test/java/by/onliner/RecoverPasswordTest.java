@@ -97,4 +97,23 @@ public class RecoverPasswordTest {
 		driver.quit();
 
 	}
+
+	@Test
+	public void testRE006(){
+		ChromeDriver driver = new ChromeDriver();
+		HomePage homePage = new HomePage(driver);
+		driver.manage().window().maximize();
+		homePage.open();
+		homePage.clickButtonAuth();
+
+		AuthFormPage authFormPage = new AuthFormPage(driver);
+		authFormPage.clickLinkForgotPassword();
+
+		RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage(driver);
+		recoverPasswordPage.setInputEmail("xyz");
+		recoverPasswordPage.clickButtonAuth();
+
+		Assertions.assertEquals("Такой пользователь не зарегистрирован", recoverPasswordPage.getErrorMessageNotRegister());
+		driver.quit();
+	}
 }
