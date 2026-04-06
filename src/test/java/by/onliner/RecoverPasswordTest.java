@@ -13,7 +13,8 @@ public class RecoverPasswordTest {
         RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage(driver);
         recoverPasswordPage.open();
 
-        recoverPasswordPage.enterUsername("1");
+        final String USER_NAME_AS_NUMBER = "1" ;
+		recoverPasswordPage.enterUsername(USER_NAME_AS_NUMBER);
         recoverPasswordPage.clickButtonAuth();
 
         String actualError = recoverPasswordPage.unregistredUserError();
