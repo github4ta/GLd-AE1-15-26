@@ -3,7 +3,7 @@ package by.onliner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class RegistrationPage  extends ParentPage {
+public class RegistrationPage extends ParentPage {
     private final String TITLE = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[1]";
     private final String INPUT_EMAIL = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[5]/div/div/div/div/input";
     private final String INPUT_PASSWORD = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[6]/div/div/div/div/input";
@@ -13,6 +13,7 @@ public class RegistrationPage  extends ParentPage {
     private final String ERROR_MESSAGE_EMAIL = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[5]/div/div/div[2]/div";
     private final String ERROR_MESSAGE_PASSWORD = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[6]/div/div/div[2]/div";
     private final String ERROR_MESSAGE_REPEAT_PASSWORD = "//*[@id=\"container\"]/div/div/div/form/div[2]/div/div[8]/div/div/div[2]/div";
+    private final String SUCCES_MESSAGE_CONFIRM_REG = "//*[@id=\"container\"]/div/div/div/div/div[2]/div/div[3]";
 
     public RegistrationPage(ChromeDriver driver) {
         this.driver = driver;
@@ -52,5 +53,9 @@ public class RegistrationPage  extends ParentPage {
 
     public String getErrorMessageRepeatPassword() {
         return driver.findElement(By.xpath(ERROR_MESSAGE_REPEAT_PASSWORD)).getText();
+    }
+
+    public String getSuccesMessageConfirmReg() {
+        return driver.findElement(By.xpath(SUCCES_MESSAGE_CONFIRM_REG)).getText();
     }
 }

@@ -27,7 +27,32 @@ public class RegistrationTest {
     }
 
     @Test
-    public void testRG(){
+    public void testRG() {
 
+    }
+
+    /*"Мы отправили на admin1234@onliner.by письмо. Для завершения регистрации перейдите по ссылке из письма.
+    Если вы не нашли письмо, проверьте спам."*/
+
+    @Test
+    public void testRE007() {
+        ChromeDriver driver = new ChromeDriver();
+        String textConfirmReg = "Мы отправили на admin1234@onliner.by письмо. " +
+                "Для завершения регистрации перейдите по ссылке из письма." +
+                "Если вы не нашли письмо, проверьте спам.";
+
+        HomePage homePage = new HomePage(driver);
+        homePage.open();
+
+        homePage.clickButtonAuth();
+
+        AuthFormPage authPage = new AuthFormPage(driver);
+        authPage.clickLinkRegistor();
+
+        RegistrationPage regPage = new RegistrationPage(driver);
+        regPage.setInputEmail("admin@onliner.by");
+        regPage.clickButtonSubmit();
+
+        Assertions.assertEquals(textConfirmReg, regPage.getSuccesMessageConfirmReg());
     }
 }
