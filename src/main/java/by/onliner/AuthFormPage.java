@@ -16,10 +16,9 @@ public class AuthFormPage extends ParentPage {
     private final String LINK_REGISTOR = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[4]";
     private final String LINK_FORGOT_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[4]/div[2]/a";
     private final String BUTTON_CLOSE = "//*[@id=\"auth-container\"]/div/div[1]/div[2]";
-    private final String ERROR_MESSAGE_NAME = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[1]/div/div[2]/div/div/div[2]/div";
-    private final String ERROR_MESSAGE_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[2]/div/div/div[2]/div";
-
-	private final String ERROR_PASSWORD_MESSAGE = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[2]/div/div/div[2]/div";
+    private final String ERROR_MESSAGE_NAME = "/html/body/div[5]/div/div/div/div/div/div/div/div[2]/div/form/div[1]/div/div[2]/div/div/div[2]/div";
+    private final String ERROR_MESSAGE_PASSWORD = "/html/body/div[5]/div/div/div/div/div/div/div/div[2]/div/form/div[2]/div/div/div[2]/div";
+    private final String ERROR_MESSAGE_AUTH = "/html/body/div[5]/div/div/div/div/div/div/div/div[2]/div/form/div[3]/div";
 
     public AuthFormPage(ChromeDriver driver) {
         this.driver = driver;
@@ -53,11 +52,14 @@ public class AuthFormPage extends ParentPage {
     public void clickButtonClose() {
         driver.findElement(By.xpath(BUTTON_CLOSE)).click();
     }
-
     public String getErrorMessageName() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_NAME))).getText();
+        return driver.findElement(By.xpath(ERROR_MESSAGE_NAME)).getText();
     }
     public String getErrorMessagePassword() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_PASSWORD))).getText();
+        return driver.findElement(By.xpath(ERROR_MESSAGE_PASSWORD)).getText();
+    }
+    public String getErrorMessageAuth() {
+        return driver.findElement(By.xpath(ERROR_MESSAGE_AUTH)).getText();
     }
 }
+
