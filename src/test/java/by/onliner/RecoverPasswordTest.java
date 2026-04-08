@@ -1,10 +1,14 @@
 package by.onliner;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class RecoverPasswordTest {
+	private  ChromeDriver driver;
+
     @Test
     public void RE002() {
         ChromeDriver driver = new ChromeDriver();
@@ -20,13 +24,7 @@ public class RecoverPasswordTest {
         String actualError = recoverPasswordPage.unregistredUserError();
         Assertions.assertEquals("Такой пользователь не зарегистрирован", actualError);
     }
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
-public class RecoverPasswordTest {
-	private  ChromeDriver driver;
 
 	@BeforeEach
 	public  void setup(){
