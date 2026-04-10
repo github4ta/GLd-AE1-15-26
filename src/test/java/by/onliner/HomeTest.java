@@ -1,12 +1,18 @@
 package by.onliner;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.time.Instant;
 
 public class HomeTest {
     @Test
-    public void test1(){
+    public void test1() {
         ChromeDriver driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
 
@@ -17,7 +23,7 @@ public class HomeTest {
     }
 
     @Test
-    public void HP002(){
+    public void HP002() {
         ChromeDriver driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
 
@@ -26,5 +32,21 @@ public class HomeTest {
 
         String textActualButtonAuth = homePage.getButtonAuthText();
         Assertions.assertEquals("Вход", textActualButtonAuth);
+    }
+
+    @Test
+    public void testSQ007() {
+        String dataForSearch = "any_text";
+        ChromeDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        HomePage homePage = new HomePage(driver);
+        homePage.open();
+        homePage.fillInputSearch(dataForSearch);
+        homePage.switchToIframe();
+
+        String actualText = homePage.getSearchInputText();
+        Assertions.assertEquals(dataForSearch, actualText);
+        driver.quit();
     }
 }
