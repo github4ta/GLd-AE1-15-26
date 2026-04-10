@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class AuthFormTest {
     @Test
     public void test1() {
-        FirefoxDriver driver = new FirefoxDriver();
+        ChromeDriver driver = new ChromeDriver();
         HomePage homepage = new HomePage(driver);
         driver.manage().window().maximize();
         homepage.open();
@@ -25,7 +25,7 @@ public class AuthFormTest {
   
     @Test
     public void testAF004(){
-        FirefoxDriver driver = new FirefoxDriver();
+        ChromeDriver driver = new ChromeDriver();
         HomePage homepage = new HomePage(driver);
         driver.manage().window().maximize();
         homepage.open();
