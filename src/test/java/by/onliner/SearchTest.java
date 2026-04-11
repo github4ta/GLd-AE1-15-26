@@ -2,6 +2,7 @@ package by.onliner;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -28,5 +29,21 @@ public class SearchTest {
         Assertions.assertTrue(textFirstAdidasProduct.contains("Adidas"),
                 "Первый товар не содержит 'adidas'. Фактическое название: " + textFirstAdidasProduct);
         driver.quit();
+    }
+
+    @Test
+    public void testSQ005() {
+        ChromeDriver driver = new ChromeDriver();
+        HomePage homePage = new HomePage(driver);
+
+        homePage.open();
+        driver.manage().window().maximize();
+
+        homePage.setTextToInputSearch(" ");
+        SearchPage searchPage = new SearchPage(driver);
+        searchPage.switchToIframe();
+        searchPage.setSearchInputIframe(Keys.BACK_SPACE);
+        Assertions.assertEquals("Поиск", searchPage.getSearchInputIframePlaceholder());
+        Assertions.assertEquals("", searchPage.getSearchInputIframeText());
     }
 }

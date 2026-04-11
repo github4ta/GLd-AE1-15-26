@@ -16,6 +16,7 @@ public class SearchPage extends ParentPage {
     private final String SEARCH_IFRAME = "//iframe[@class=\"modal-iframe\"]";
     private final String FIELD ="//*[@id=\"search-page\"]/div[1]/div[1]/input";
     private final String FIRST_ADIDAS_PRODUCT = "(//a[contains(@class, 'product__title')])[1]";
+    private final String SEARCH_INPUT_IFRAME_TEXT = "//span[@class='text_match']";
             //"//a[contains(@class, 'product__title') and contains(normalize-space(), 'Футбольный мяч Adidas Adidas UCL League Box 2026 FIFA JP1548-4 (размер 4)')]";
 
     public SearchPage(ChromeDriver driver) {
@@ -36,5 +37,17 @@ public class SearchPage extends ParentPage {
 
     public String verifyFirstResultContainsAdidas() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(FIRST_ADIDAS_PRODUCT))).getText();
+    }
+
+    public void setSearchInputIframe(Keys value) {
+        driver.findElement(By.xpath(SEARCH_INPUT_IFRAME)).sendKeys(value);
+    }
+
+    public String getSearchInputIframeText() {
+        return driver.findElement(By.xpath(SEARCH_INPUT_IFRAME_TEXT)).getText();
+    }
+
+    public String getSearchInputIframePlaceholder() {
+        return driver.findElement(By.xpath(SEARCH_INPUT_IFRAME)).getAttribute("placeholder");
     }
 }
