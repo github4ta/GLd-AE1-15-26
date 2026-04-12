@@ -20,7 +20,8 @@ public class HomePage extends ParentPage {
     public HomePage(ChromeDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        ;
     }
 
     public void open() {
@@ -38,9 +39,11 @@ public class HomePage extends ParentPage {
     public String getCopyRights() {
         return driver.findElement(By.xpath(COPY_RIGHTS)).getText();
     }
+
     public void setTextToInputSearch(String textSearch) {
         driver.findElement(By.xpath(INPUT_SEARCH)).sendKeys(textSearch);
     }
+
     public void clickCookies() {
         driver.findElement(By.xpath(COOKIES)).click();
     }
@@ -59,5 +62,10 @@ public class HomePage extends ParentPage {
                 By.xpath(SEARCH_INPUT_IFRAME)
         ));
         return searchInputIframeText.getAttribute("value");
+    }
+
+    public String getPlaceholderText() {
+        WebElement element = driver.findElement(By.xpath(INPUT_SEARCH));
+        return element.getAttribute("placeholder");
     }
 }
