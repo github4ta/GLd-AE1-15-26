@@ -16,6 +16,7 @@ public class HomePage extends ParentPage {
     private final String COOKIES = "//*[@id=\"submit-button\"]";
     private final String SEARCH_INPUT_IFRAME = "//input[@class=\"search__input ym-record-keys\"]";
     private final String SEARCH_IFRAME = "//iframe[@class=\"modal-iframe\"]";
+    private final String EMPTY_RESULT = "//*[contains(text(), 'Ничего не найдено')]";
 
     public HomePage(ChromeDriver driver) {
         this.driver = driver;
@@ -59,5 +60,11 @@ public class HomePage extends ParentPage {
                 By.xpath(SEARCH_INPUT_IFRAME)
         ));
         return searchInputIframeText.getAttribute("value");
+    }
+
+    public String getEmptyResultMessage() {
+        WebElement getEmptyResultMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath(EMPTY_RESULT)));
+        return getEmptyResultMessage.getText();
     }
 }
