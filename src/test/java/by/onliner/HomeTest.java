@@ -51,6 +51,7 @@ public class HomeTest {
     @Test
     public void testSQ001(){
         String searchQuery = "qqqqq";
+    public void testSQ006() {
         ChromeDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
 
@@ -62,5 +63,16 @@ public class HomeTest {
         String actualText = homePage.getEmptyResultMessage();
         Assertions.assertEquals("Ничего не найдено",actualText);
         driver.quit();
+        homePage.clickCookies();
+
+        String checkText = "Поиск в Каталоге";
+        String actualText = homePage.getPlaceholderText();
+        Assertions.assertTrue(
+                actualText.contains(checkText),
+                "Текст '" + checkText + "' не найден в actualText: " + actualText
+        );
+
+        driver.quit();
+
     }
 }
