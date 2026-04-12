@@ -11,8 +11,8 @@ import java.time.Duration;
 public class HomePage extends ParentPage {
     private final String URL = "https://www.onliner.by/";
     private final String INPUT_SEARCH = "//input[@name=\"query\"]";
-    private final String BUTTON_AUTH = "//*[@id=\"userbar\"]/div[2]/div/div/div[1]";
-    private final String COPY_RIGHTS = "/html/body/div[4]/footer/div/div/div/div[2]/div[2]";
+    private final String BUTTON_AUTH = "//div[text()='Вход']";
+    private final String COPY_RIGHTS = "//div[@class='footer-style__copy']";
     private final String COOKIES = "//*[@id=\"submit-button\"]";
     private final String SEARCH_INPUT_IFRAME = "//input[@class=\"search__input ym-record-keys\"]";
     private final String SEARCH_IFRAME = "//iframe[@class=\"modal-iframe\"]";
