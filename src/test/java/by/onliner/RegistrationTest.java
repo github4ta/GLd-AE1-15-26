@@ -1,11 +1,8 @@
 package by.onliner;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
-import org.junit.jupiter.api.Assertions;
 
 public class RegistrationTest {
     @Test
@@ -37,12 +34,23 @@ public class RegistrationTest {
     public void testRG003(){
         ChromeDriver driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
-        AuthFormPage auth = new AuthFormPage(driver);
-        //RegistrationPage registrationPage = new RegistrationPage(driver);
+        driver.manage().window().maximize();
+        String email = "test@test.com";
+        String password = "qwerty@147852";
 
         homePage.open();
         homePage.clickButtonAuth();
 
-        auth.clickLinkRegistor();
+        AuthFormPage authFormPage = new AuthFormPage(driver);
+        authFormPage.clickLinkRegistor();
+
+        RegistrationPage registrationPage = new RegistrationPage(driver);
+        registrationPage.setInputEmail(email);
+        registrationPage.setInputPassword(password);
+        registrationPage.setInputRepeatPassword(password);
+        registrationPage.clickButtonSubmit();
+
+        String actualButtonCheckText = registrationPage.getButtonEmailCheck();
+        Assertions.assertEquals("Перейти в почту", actualButtonCheckText);
     }
 }
