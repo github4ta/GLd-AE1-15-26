@@ -43,4 +43,24 @@ public class HomeTest {
         Assertions.assertEquals(dataForSearch, actualText);
         driver.quit();
     }
+
+    @Test
+    public void testSQ006() {
+        ChromeDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        HomePage homePage = new HomePage(driver);
+        homePage.open();
+        homePage.clickCookies();
+
+        String checkText = "Поиск в Каталоге";
+        String actualText = homePage.getPlaceholderText();
+        Assertions.assertTrue(
+                actualText.contains(checkText),
+                "Текст '" + checkText + "' не найден в actualText: " + actualText
+        );
+
+        driver.quit();
+
+    }
 }
