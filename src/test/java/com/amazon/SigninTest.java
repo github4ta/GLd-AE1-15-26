@@ -1,7 +1,7 @@
 package com.amazon;
 
-import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -17,9 +17,11 @@ public class SigninTest {
     public void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(DEFAULT_IMPLICITLY_WAIT_DURATION_OF_SECONDS);
+        // driver.manage().timeouts().implicitlyWait(DEFAULT_IMPLICITLY_WAIT_DURATION_OF_SECONDS);
+
         homePage = new HomePage(driver);
         homePage.open();
+
         homePage.clickButtonSignin();
         signinPage = new SigninPage(driver);
     }
