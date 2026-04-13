@@ -21,7 +21,7 @@ public class SigninTest {
         homePage = new HomePage(driver);
         homePage.open();
         homePage.clickButtonSignin();
-        SigninPage signinPage = new SigninPage(driver);
+        signinPage = new SigninPage(driver);
     }
 
     @DisplayName("Check sighninpage is open")
