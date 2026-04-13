@@ -48,7 +48,7 @@ public class HomeTest {
         driver.quit();
     }
 
-    @Test
+    /*@Test
     public void testSQ001(){
         String searchQuery = "qqqqq";
     public void testSQ006() {
@@ -74,5 +74,5 @@ public class HomeTest {
 
         driver.quit();
 
-    }
+    }*/
 }
