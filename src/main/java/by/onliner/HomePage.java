@@ -69,6 +69,8 @@ public class HomePage extends ParentPage {
         WebElement getEmptyResultMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath(EMPTY_RESULT)));
         return getEmptyResultMessage.getText();
+    }
+
     public String getPlaceholderText() {
         WebElement element = driver.findElement(By.xpath(INPUT_SEARCH));
         return element.getAttribute("placeholder");
