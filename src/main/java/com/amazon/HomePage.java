@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
 
-    private final String URL = "https://www.amazon.com/";
+    private final String HOME_URL = "https://www.amazon.com/";
     private final String COPYRIGHTS = "//div[@class=\"navFooterLine navFooterLinkLine navFooterPadItemLine navFooterCopyright\"]/span";
 
     public HomePage(WebDriver driver) {
@@ -13,7 +13,7 @@ public class HomePage extends BasePage {
     }
 
     public void open() {
-        driver.get(URL);
+        driver.get(HOME_URL);
     }
 
     public String getTextCopyRights() {
