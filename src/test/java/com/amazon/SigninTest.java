@@ -20,14 +20,13 @@ public class SigninTest {
         driver.manage().timeouts().implicitlyWait(DEFAULT_IMPLICITLY_WAIT_DURATION_OF_SECONDS);
         homePage = new HomePage(driver);
         homePage.open();
+        homePage.clickButtonSignin();
+        SigninPage signinPage = new SigninPage(driver);
     }
 
     @DisplayName("Check sighninpage is open")
     @Test
     public void testSigninPage() {
-        homePage.clickButtonSignin();
-        SigninPage signinPage = new SigninPage(driver);
-
         Assertions.assertEquals("Sign in or create account", signinPage.getTextSigninTitle());
     }
 
