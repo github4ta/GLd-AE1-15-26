@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class HomePage extends BasePage {
     private final String HOME_URL = "https://www.amazon.com/";
     private final String COPYRIGHTS = "//div[contains(@class,\"navFooterCopyright\")]/span";
+    private final String BUTTON_SIGNIN = "//span[@id=\"nav-link-accountList-nav-line-1\"]";
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -20,5 +21,9 @@ public class HomePage extends BasePage {
 //        WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(COPYRIGHTS)));
 //        return text.getText();
         return driver.findElement(By.xpath(COPYRIGHTS)).getText();
+    }
+
+    public void clickButtonSignin() {
+        driver.findElement(By.xpath(BUTTON_SIGNIN)).click();
     }
 }
