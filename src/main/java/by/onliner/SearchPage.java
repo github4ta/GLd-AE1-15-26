@@ -17,6 +17,7 @@ public class SearchPage extends ParentPage {
     private final String FIELD ="//*[@id=\"search-page\"]/div[1]/div[1]/input";
     private final String FIRST_ADIDAS_PRODUCT = "(//a[contains(@class, 'product__title')])[1]";
     private final String SEARCH_INPUT_IFRAME_TEXT = "//span[@class='text_match']";
+    private final String LEGO_PRODUCT_CARD = "//a[@href='https://catalog.onliner.by/buildingkit/lego/10282']";
             //"//a[contains(@class, 'product__title') and contains(normalize-space(), 'Футбольный мяч Adidas Adidas UCL League Box 2026 FIFA JP1548-4 (размер 4)')]";
 
     public SearchPage(ChromeDriver driver) {
@@ -49,5 +50,9 @@ public class SearchPage extends ParentPage {
 
     public String getSearchInputIframePlaceholder() {
         return driver.findElement(By.xpath(SEARCH_INPUT_IFRAME)).getAttribute("placeholder");
+    }
+
+    public String checkResultContainsLego() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LEGO_PRODUCT_CARD))).getText();
     }
 }

@@ -38,6 +38,7 @@ public class SearchTest {
 
         homePage.open();
         driver.manage().window().maximize();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         homePage.setTextToInputSearch(" ");
         SearchPage searchPage = new SearchPage(driver);
@@ -45,5 +46,21 @@ public class SearchTest {
         searchPage.setSearchInputIframe(Keys.BACK_SPACE);
         Assertions.assertEquals("Поиск", searchPage.getSearchInputIframePlaceholder());
         Assertions.assertEquals("", searchPage.getSearchInputIframeText());
+    }
+
+    @Test
+    public void testSQ004(){
+        ChromeDriver driver = new ChromeDriver();
+        HomePage homePage = new HomePage(driver);
+
+        homePage.open();
+        driver.manage().window().maximize();
+
+        homePage.setTextToInputSearch("Конструктор LEGO 10282 Кроссовки adidas Originals superstar");
+        SearchPage searchPage = new SearchPage(driver);
+        searchPage.switchToIframe();
+
+        String textLegoPrpduct = searchPage.checkResultContainsLego();
+        Assertions.assertTrue(textLegoPrpduct.contains("Конструктор LEGO 10282 Кроссовки adidas Originals Superstar"),"Первый товар не содержит 'Конструктор LEGO 10282 Кроссовки adidas Originals superstar'. Фактическое название: " + textLegoPrpduct);
     }
 }
