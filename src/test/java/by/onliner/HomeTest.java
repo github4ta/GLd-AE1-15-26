@@ -48,21 +48,13 @@ public class HomeTest {
         driver.quit();
     }
 
-    /*@Test
-    public void testSQ001(){
-        String searchQuery = "qqqqq";
+    @Test
     public void testSQ006() {
         ChromeDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
 
         HomePage homePage = new HomePage(driver);
         homePage.open();
-        homePage.fillInputSearch(searchQuery);
-        homePage.switchToIframe();
-
-        String actualText = homePage.getEmptyResultMessage();
-        Assertions.assertEquals("Ничего не найдено",actualText);
-        driver.quit();
         homePage.clickCookies();
 
         String checkText = "Поиск в Каталоге";
@@ -71,8 +63,22 @@ public class HomeTest {
                 actualText.contains(checkText),
                 "Текст '" + checkText + "' не найден в actualText: " + actualText
         );
-
         driver.quit();
+    }
 
-    }*/
+    @Test
+    public void testSQ001() {
+        String searchQuery = "qqqqq";
+
+        ChromeDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        HomePage homePage = new HomePage(driver);
+        homePage.open();
+        homePage.fillInputSearch(searchQuery);
+        homePage.switchToIframe();
+
+        Assertions.assertEquals("Ничего не найдено", homePage.getEmptyResultMessage());
+        driver.quit();
+    }
 }
