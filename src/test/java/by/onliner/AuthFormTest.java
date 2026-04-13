@@ -46,7 +46,9 @@ public class AuthFormTest {
         Assertions.assertEquals("Укажите ник или e-mail", authFormPage.getErrorMessageName());
         Assertions.assertEquals("Укажите пароль", authFormPage.getErrorMessagePassword());
     }
-  
+
+
+    @DisplayName("Проверка ошибки для поля Имя в форме логинаю")
     @Test
     public void testAF003() {
         authFormPage.setInputPassword("1qazxsw2/.");

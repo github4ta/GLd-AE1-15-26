@@ -22,7 +22,6 @@ public class HomePage extends ParentPage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        ;
     }
 
     public void open() {
