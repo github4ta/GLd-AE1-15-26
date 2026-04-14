@@ -34,7 +34,7 @@ public class SearchTest {
     public void SQ002(){
         ChromeDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait( driver, Duration.ofSeconds(10));
-        HomePage homePage = new HomeHage(driver);
+        HomePage homePage = new HomePage(driver);
         homePage.open();
         driver.manage().window().maximize();
         homePage.setTextToInputSearch("Велосипеды");
