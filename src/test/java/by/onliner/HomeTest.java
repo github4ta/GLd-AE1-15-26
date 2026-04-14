@@ -3,6 +3,10 @@ package by.onliner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomeTest {
     @Test
@@ -41,6 +45,40 @@ public class HomeTest {
 
         String actualText = homePage.getSearchInputText();
         Assertions.assertEquals(dataForSearch, actualText);
+        driver.quit();
+    }
+
+    @Test
+    public void testSQ006() {
+        ChromeDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        HomePage homePage = new HomePage(driver);
+        homePage.open();
+        homePage.clickCookies();
+
+        String checkText = "Поиск в Каталоге";
+        String actualText = homePage.getPlaceholderText();
+        Assertions.assertTrue(
+                actualText.contains(checkText),
+                "Текст '" + checkText + "' не найден в actualText: " + actualText
+        );
+        driver.quit();
+    }
+
+    @Test
+    public void testSQ001() {
+        String searchQuery = "qqqqq";
+
+        ChromeDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        HomePage homePage = new HomePage(driver);
+        homePage.open();
+        homePage.fillInputSearch(searchQuery);
+        homePage.switchToIframe();
+
+        Assertions.assertEquals("Ничего не найдено", homePage.getEmptyResultMessage());
         driver.quit();
     }
 }

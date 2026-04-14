@@ -16,8 +16,10 @@ public class SearchPage extends ParentPage {
     private final String SEARCH_IFRAME = "//iframe[@class=\"modal-iframe\"]";
     private final String FIELD = "//*[@id=\"search-page\"]/div[1]/div[1]/input";
     private final String FIRST_ADIDAS_PRODUCT = "(//a[contains(@class, 'product__title')])[1]";
-    //"//a[contains(@class, 'product__title') and contains(normalize-space(), 'Футбольный мяч Adidas Adidas UCL League Box 2026 FIFA JP1548-4 (размер 4)')]";private final String KIDS_BIKE_LINK = "//a[contains(@class,'category__title') and contains(.,'Детские велосипеды')]";
     private final String KIDS_BIKE_LINK = "//a[contains(@class,'category__title') and contains(.,'Детские велосипеды')]";
+    private final String SEARCH_INPUT_IFRAME_TEXT = "//span[@class='text_match']";
+    private final String LEGO_PRODUCT_CARD = "//a[@href='https://catalog.onliner.by/buildingkit/lego/10282']";
+         
 
     public SearchPage(ChromeDriver driver) {
         this.driver = driver;
@@ -42,5 +44,20 @@ public class SearchPage extends ParentPage {
     }
     public String getKidsBikeText(){
         return  driver.findElement(By.xpath(KIDS_BIKE_LINK)).getText();
+
+    public void setSearchInputIframe(Keys value) {
+        driver.findElement(By.xpath(SEARCH_INPUT_IFRAME)).sendKeys(value);
+    }
+
+    public String getSearchInputIframeText() {
+        return driver.findElement(By.xpath(SEARCH_INPUT_IFRAME_TEXT)).getText();
+    }
+
+    public String getSearchInputIframePlaceholder() {
+        return driver.findElement(By.xpath(SEARCH_INPUT_IFRAME)).getAttribute("placeholder");
+    }
+
+    public String checkResultContainsLego() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LEGO_PRODUCT_CARD))).getText();
     }
 }

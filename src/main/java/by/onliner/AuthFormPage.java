@@ -13,11 +13,11 @@ public class AuthFormPage extends ParentPage {
     private final String INPUT_NAME = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[1]/div/div[2]/div/div/div/div/input";
     private final String INPUT_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[2]/div/div/div/div/input";
     private final String BUTTON_SUBMIT = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[3]/button";
-    private final String LINK_REGISTOR = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[4]";
+    private final String LINK_REGISTOR = "//a[@href=\"https://profile.onliner.by/registration\"]";
     private final String LINK_FORGOT_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[4]/div[2]/a";
     private final String BUTTON_CLOSE = "//*[@id=\"auth-container\"]/div/div[1]/div[2]";
-    private final String ERROR_MESSAGE_NAME = "/html/body/div[5]/div/div/div/div/div/div/div/div[2]/div/form/div[1]/div/div[2]/div/div/div[2]/div";
-    private final String ERROR_MESSAGE_PASSWORD = "/html/body/div[5]/div/div/div/div/div/div/div/div[2]/div/form/div[2]/div/div/div[2]/div";
+    private final String ERROR_MESSAGE_NAME = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[1]/div/div[2]/div/div/div[2]/div";
+    private final String ERROR_MESSAGE_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[2]/div/div/div[2]/div";
     private final String ERROR_MESSAGE_AUTH = "/html/body/div[5]/div/div/div/div/div/div/div/div[2]/div/form/div[3]/div";
 
     public AuthFormPage(ChromeDriver driver) {
@@ -53,10 +53,10 @@ public class AuthFormPage extends ParentPage {
         driver.findElement(By.xpath(BUTTON_CLOSE)).click();
     }
     public String getErrorMessageName() {
-        return driver.findElement(By.xpath(ERROR_MESSAGE_NAME)).getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_NAME))).getText();
     }
     public String getErrorMessagePassword() {
-        return driver.findElement(By.xpath(ERROR_MESSAGE_PASSWORD)).getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_PASSWORD))).getText();
     }
     public String getErrorMessageAuth() {
         return driver.findElement(By.xpath(ERROR_MESSAGE_AUTH)).getText();

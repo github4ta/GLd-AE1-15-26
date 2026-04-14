@@ -10,18 +10,19 @@ import java.time.Duration;
 
 public class HomePage extends ParentPage {
     private final String URL = "https://www.onliner.by/";
-    private final String INPUT_SEARCH = "//*[@id=\"fast-search\"]/div/input";
-    private final String BUTTON_AUTH = "//*[@id=\"userbar\"]/div[2]/div/div/div[1]";
-    private final String COPY_RIGHTS = "/html/body/div[4]/footer/div/div/div/div[2]/div[2]";
+    private final String INPUT_SEARCH = "//input[@name=\"query\"]";
+    private final String BUTTON_AUTH = "//div[text()='Вход']";
+    private final String COPY_RIGHTS = "//div[@class='footer-style__copy']";
     private final String COOKIES = "//*[@id=\"submit-button\"]";
-    private final String SEARCH_INPUT= "//input[@name=\"query\"]";
     private final String SEARCH_INPUT_IFRAME = "//input[@class=\"search__input ym-record-keys\"]";
     private final String SEARCH_IFRAME = "//iframe[@class=\"modal-iframe\"]";
+    private final String EMPTY_RESULT = "//*[contains(text(), 'Ничего не найдено')]";
 
     public HomePage(ChromeDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        ;
     }
 
     public void open() {
@@ -39,15 +40,17 @@ public class HomePage extends ParentPage {
     public String getCopyRights() {
         return driver.findElement(By.xpath(COPY_RIGHTS)).getText();
     }
+
     public void setTextToInputSearch(String textSearch) {
         driver.findElement(By.xpath(INPUT_SEARCH)).sendKeys(textSearch);
     }
+
     public void clickCookies() {
         driver.findElement(By.xpath(COOKIES)).click();
     }
 
     public void fillInputSearch(String data) {
-        driver.findElement(By.xpath(SEARCH_INPUT)).sendKeys(data);
+        driver.findElement(By.xpath(INPUT_SEARCH)).sendKeys(data);
     }
 
     public void switchToIframe() {
@@ -60,5 +63,16 @@ public class HomePage extends ParentPage {
                 By.xpath(SEARCH_INPUT_IFRAME)
         ));
         return searchInputIframeText.getAttribute("value");
+    }
+
+    public String getEmptyResultMessage() {
+        WebElement getEmptyResultMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath(EMPTY_RESULT)));
+        return getEmptyResultMessage.getText();
+    }
+
+    public String getPlaceholderText() {
+        WebElement element = driver.findElement(By.xpath(INPUT_SEARCH));
+        return element.getAttribute("placeholder");
     }
 }
