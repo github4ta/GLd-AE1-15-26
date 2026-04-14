@@ -11,30 +11,36 @@ import java.time.Duration;
 
 public class SearchPage extends ParentPage {
     private final String INPUT_SEARCH_BAR = "//input[@type='text' and contains(@class, 'search__input')]";
-    private final String SEARCH_INPUT= "//input[@name=\"query\"]";
+    private final String SEARCH_INPUT = "//input[@name=\"query\"]";
     private final String SEARCH_INPUT_IFRAME = "//input[@class=\"search__input ym-record-keys\"]";
     private final String SEARCH_IFRAME = "//iframe[@class=\"modal-iframe\"]";
-    private final String FIELD ="//*[@id=\"search-page\"]/div[1]/div[1]/input";
+    private final String FIELD = "//*[@id=\"search-page\"]/div[1]/div[1]/input";
     private final String FIRST_ADIDAS_PRODUCT = "(//a[contains(@class, 'product__title')])[1]";
-            //"//a[contains(@class, 'product__title') and contains(normalize-space(), 'Футбольный мяч Adidas Adidas UCL League Box 2026 FIFA JP1548-4 (размер 4)')]";
+    //"//a[contains(@class, 'product__title') and contains(normalize-space(), 'Футбольный мяч Adidas Adidas UCL League Box 2026 FIFA JP1548-4 (размер 4)')]";private final String KIDS_BIKE_LINK = "//a[contains(@class,'category__title') and contains(.,'Детские велосипеды')]";
+    private final String KIDS_BIKE_LINK = "//a[contains(@class,'category__title') and contains(.,'Детские велосипеды')]";
 
     public SearchPage(ChromeDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
+
     public void switchToIframe() {
         WebElement searchIframe = driver.findElement(By.xpath(SEARCH_IFRAME));
         driver.switchTo().frame(searchIframe);
     }
+
     public void clearSearchInput() {
         driver.findElement(By.xpath(INPUT_SEARCH_BAR)).clear();
     }
 
     public void setInputFullText(String textSearch) {
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(INPUT_SEARCH_BAR))).sendKeys(textSearch);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(INPUT_SEARCH_BAR))).sendKeys(textSearch);
     }
 
     public String verifyFirstResultContainsAdidas() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(FIRST_ADIDAS_PRODUCT))).getText();
+    }
+    public String getKidsBikeText(){
+        return  driver.findElement(By.xpath(KIDS_BIKE_LINK)).getText();
     }
 }
