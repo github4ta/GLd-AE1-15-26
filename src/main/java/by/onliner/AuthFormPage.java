@@ -1,12 +1,17 @@
 package by.onliner;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.function.Function;
 
 public class AuthFormPage extends ParentPage {
     private final String TITEL = "//*[@id=\"auth-container\"]/div/div[2]/div/div[1]";
@@ -38,8 +43,18 @@ public class AuthFormPage extends ParentPage {
     }
 
     public void clickButtonSubmit() {
-        driver.findElement(By.xpath(BUTTON_SUBMIT)).click();
+        // 1. Исправлен тип переменной на Wait<WebDriver>
+        FluentWait<ChromeDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofMillis(500)) // 2. Ускорили опрос (0.5 сек вместо 5 сек)
+                .ignoring(NoSuchElementException.class)
+                .withMessage("Кнопка Submit не найдена за отведенное время");
+
+        // 3. Добавлен @Override для чистоты кода
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(BUTTON_SUBMIT)));
+        element.click();
     }
+
 
     public void clickLinkRegistor() {
         driver.findElement(By.xpath(LINK_REGISTOR)).click();
@@ -59,7 +74,12 @@ public class AuthFormPage extends ParentPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_PASSWORD))).getText();
     }
     public String getErrorMessageAuth() {
-        return driver.findElement(By.xpath(ERROR_MESSAGE_AUTH)).getText();
+        FluentWait<ChromeDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofMillis(500)) // 2. Ускорили опрос (0.5 сек вместо 5 сек)
+                .ignoring(NoSuchElementException.class)
+                .withMessage("Кнопка Submit не найдена за отведенное время");
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_AUTH))).getText();
     }
 }
 
