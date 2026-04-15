@@ -1,17 +1,22 @@
 package by.onliner;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class HomeTest {
+    private ChromeDriver driver;
+
+    @BeforeEach
+    public void beforeEach(){
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+    }
+
     @Test
     public void test1() {
-        ChromeDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
 
         homePage.open();
@@ -26,7 +31,6 @@ public class HomeTest {
         HomePage homePage = new HomePage(driver);
 
         homePage.open();
-        driver.manage().window().maximize();
 
         String textActualButtonAuth = homePage.getButtonAuthText();
         Assertions.assertEquals("Вход", textActualButtonAuth);

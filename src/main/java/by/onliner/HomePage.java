@@ -1,8 +1,8 @@
 package by.onliner;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,7 +18,7 @@ public class HomePage extends ParentPage {
     private final String SEARCH_IFRAME = "//iframe[@class=\"modal-iframe\"]";
     private final String EMPTY_RESULT = "//*[contains(text(), 'Ничего не найдено')]";
 
-    public HomePage(ChromeDriver driver) {
+    public HomePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));

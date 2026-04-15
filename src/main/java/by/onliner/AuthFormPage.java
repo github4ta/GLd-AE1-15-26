@@ -1,9 +1,9 @@
 package by.onliner;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -39,6 +39,11 @@ public class AuthFormPage extends ParentPage {
 
     public void clickButtonSubmit() {
         driver.findElement(By.xpath(BUTTON_SUBMIT)).click();
+        FluentWait<ChromeDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofMillis(500))
+                .ignoring(NoSuchFieldException.class)
+                .withMessage("Кнопка Submit не найдена за отведеннове время");
     }
 
     public void clickLinkRegistor() {
