@@ -22,7 +22,6 @@ public class HomePage extends ParentPage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        ;
     }
 
     public void open() {
@@ -46,7 +45,9 @@ public class HomePage extends ParentPage {
     }
 
     public void clickCookies() {
-        driver.findElement(By.xpath(COOKIES)).click();
+        WebDriverWait wait  = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement cookies = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(COOKIES)));
+        cookies.click();
     }
 
     public void fillInputSearch(String data) {
