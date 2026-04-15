@@ -42,8 +42,9 @@ public class SearchPage extends ParentPage {
     public String verifyFirstResultContainsAdidas() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(FIRST_ADIDAS_PRODUCT))).getText();
     }
-    public String getKidsBikeText(){
-        return  driver.findElement(By.xpath(KIDS_BIKE_LINK)).getText();
+    public String getKidsBikeText() {
+        return driver.findElement(By.xpath(KIDS_BIKE_LINK)).getText();
+    }
 
     public void setSearchInputIframe(Keys value) {
         driver.findElement(By.xpath(SEARCH_INPUT_IFRAME)).sendKeys(value);
