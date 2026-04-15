@@ -1,23 +1,16 @@
 package by.onliner;
 
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-public class AuthFormTest {
-
-    private ChromeDriver driver;
-    private HomePage homePage;
+public class AuthFormTest extends BaseTest {
     private AuthFormPage authFormPage;
 
     @BeforeEach
-    public void initDriverAndManageWindowAndOpenHomePageAndClickButtonAuth() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-
-        homePage = new HomePage(driver);
-        homePage.open();
+    public void setupAuth() {
         homePage.clickButtonAuth();
-
         authFormPage = new AuthFormPage(driver);
     }
 
@@ -63,11 +56,4 @@ public class AuthFormTest {
 
 		Assertions.assertEquals("Укажите пароль", authFormPage.getErrorMessagePassword());
 	}
-
-    @AfterEach
-    public void driverQuitIfNotNull() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
 }

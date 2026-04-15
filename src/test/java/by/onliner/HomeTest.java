@@ -1,25 +1,9 @@
 package by.onliner;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class HomeTest {
-    private WebDriver driver;
-    private HomePage homePage;
-
-    @BeforeEach
-    public void beforeEach() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-
-        homePage = new HomePage(driver);
-        homePage.open();
-        homePage.clickCookies();
-    }
+public class HomeTest extends BaseTest {
 
     @Test
     public void test1() {
@@ -58,10 +42,5 @@ public class HomeTest {
         homePage.fillInputSearch(searchQuery);
         homePage.switchToIframe();
         Assertions.assertEquals("Ничего не найдено", homePage.getEmptyResultMessage());
-    }
-
-    @AfterEach
-    public void afterEach() {
-        driver.quit();
     }
 }

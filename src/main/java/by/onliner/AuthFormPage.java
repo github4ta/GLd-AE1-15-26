@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,7 +22,7 @@ public class AuthFormPage extends ParentPage {
     private final String ERROR_MESSAGE_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[2]/div/div/div[2]/div";
     private final String ERROR_MESSAGE_AUTH = "/html/body/div[5]/div/div/div/div/div/div/div/div[2]/div/form/div[3]/div";
 
-    public AuthFormPage(ChromeDriver driver) {
+    public AuthFormPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
@@ -49,7 +48,7 @@ public class AuthFormPage extends ParentPage {
                 .withMessage("Кнопка Submit не найдена за отведенное время");
 
         // 3. Добавлен @Override для чистоты кода
-        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(BUTTON_SUBMIT)));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(BUTTON_SUBMIT)));
         element.click();
     }
 
