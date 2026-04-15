@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class RegistrationPage  extends ParentPage {
+public class RegistrationPage  extends BasePage {
     private final String TITLE = "//div[contains(@class, 'auth-form__title')]";
     private final String INPUT_EMAIL = "//input[@type=\"email\"]";
     private final String INPUT_PASSWORD = "//input[@placeholder=\"Придумайте пароль\"]";

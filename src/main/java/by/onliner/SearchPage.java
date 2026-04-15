@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class SearchPage extends ParentPage {
+public class SearchPage extends BasePage {
     private final String INPUT_SEARCH_BAR = "//input[@type='text' and contains(@class, 'search__input')]";
     private final String SEARCH_INPUT = "//input[@name=\"query\"]";
     private final String SEARCH_INPUT_IFRAME = "//input[@class=\"search__input ym-record-keys\"]";

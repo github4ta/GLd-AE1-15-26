@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class RecoverPasswordPage extends ParentPage {
+public class RecoverPasswordPage extends BasePage {
     private final String TITLE = "//div[contains(@class, 'auth-form__title')]";
     private final String INPUT_EMAIL = "//input[@placeholder='Ник, e-mail или номер телефона']";
     private final String BUTTON_AUTH = "//button[@type='submit']";

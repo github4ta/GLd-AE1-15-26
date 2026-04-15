@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class HomePage extends ParentPage {
+public class HomePage extends BasePage {
     private final String URL = "https://www.onliner.by/";
     private final String INPUT_SEARCH = "//input[@name=\"query\"]";
     private final String BUTTON_AUTH = "//div[text()='Вход']";
