@@ -7,11 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.function.Function;
 
 public class AuthFormPage extends ParentPage {
     private final String TITEL = "//*[@id=\"auth-container\"]/div/div[2]/div/div[1]";
@@ -44,7 +42,7 @@ public class AuthFormPage extends ParentPage {
 
     public void clickButtonSubmit() {
         // 1. Исправлен тип переменной на Wait<WebDriver>
-        FluentWait<ChromeDriver> wait = new FluentWait<>(driver)
+        FluentWait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(30))
                 .pollingEvery(Duration.ofMillis(500)) // 2. Ускорили опрос (0.5 сек вместо 5 сек)
                 .ignoring(NoSuchElementException.class)
@@ -74,7 +72,7 @@ public class AuthFormPage extends ParentPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_PASSWORD))).getText();
     }
     public String getErrorMessageAuth() {
-        FluentWait<ChromeDriver> wait = new FluentWait<>(driver)
+        FluentWait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(30))
                 .pollingEvery(Duration.ofMillis(500)) // 2. Ускорили опрос (0.5 сек вместо 5 сек)
                 .ignoring(NoSuchElementException.class)
