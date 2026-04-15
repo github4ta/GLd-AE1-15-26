@@ -19,7 +19,6 @@ public class SearchPage extends ParentPage {
     private final String KIDS_BIKE_LINK = "//a[contains(@class,'category__title') and contains(.,'Детские велосипеды')]";
     private final String SEARCH_INPUT_IFRAME_TEXT = "//span[@class='text_match']";
     private final String LEGO_PRODUCT_CARD = "//a[@href='https://catalog.onliner.by/buildingkit/lego/10282']";
-         
 
     public SearchPage(ChromeDriver driver) {
         this.driver = driver;
@@ -42,6 +41,7 @@ public class SearchPage extends ParentPage {
     public String verifyFirstResultContainsAdidas() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(FIRST_ADIDAS_PRODUCT))).getText();
     }
+
     public String getKidsBikeText() {
         return driver.findElement(By.xpath(KIDS_BIKE_LINK)).getText();
     }

@@ -30,31 +30,32 @@ public class SearchTest {
                 "Первый товар не содержит 'adidas'. Фактическое название: " + textFirstAdidasProduct);
         driver.quit();
     }
+
     @Test
-    public void SQ002(){
+    public void SQ002() {
         ChromeDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait( driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         HomePage homePage = new HomePage(driver);
         homePage.open();
         driver.manage().window().maximize();
         homePage.setTextToInputSearch("Велосипеды");
-      
+
         SearchPage searchPage = new SearchPage(driver);
         searchPage.switchToIframe();
         String actualText = searchPage.getKidsBikeText();
         Assertions.assertEquals("Детские велосипеды", actualText);
         driver.quit();
-        }
+    }
 
     @Test
     public void testSQ005() {
         ChromeDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         HomePage homePage = new HomePage(driver);
-      
+
         homePage.open();
         driver.manage().window().maximize();
-      
+
         homePage.setTextToInputSearch(" ");
         SearchPage searchPage = new SearchPage(driver);
         searchPage.switchToIframe();
@@ -64,7 +65,7 @@ public class SearchTest {
     }
 
     @Test
-    public void testSQ004(){
+    public void testSQ004() {
         ChromeDriver driver = new ChromeDriver();
         HomePage homePage = new HomePage(driver);
 
@@ -76,6 +77,6 @@ public class SearchTest {
         searchPage.switchToIframe();
 
         String textLegoPrpduct = searchPage.checkResultContainsLego();
-        Assertions.assertTrue(textLegoPrpduct.contains("Конструктор LEGO 10282 Кроссовки adidas Originals Superstar"),"Первый товар не содержит 'Конструктор LEGO 10282 Кроссовки adidas Originals superstar'. Фактическое название: " + textLegoPrpduct);
+        Assertions.assertTrue(textLegoPrpduct.contains("Конструктор LEGO 10282 Кроссовки adidas Originals Superstar"), "Первый товар не содержит 'Конструктор LEGO 10282 Кроссовки adidas Originals superstar'. Фактическое название: " + textLegoPrpduct);
     }
 }

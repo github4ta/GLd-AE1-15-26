@@ -15,7 +15,6 @@ public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        //this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void open() {
@@ -23,15 +22,12 @@ public class HomePage extends BasePage {
     }
 
     public String getTextCopyrights() {
-//        WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(COPYRIGHTS)));
-//        return text.getText();
         return driver.findElement(By.xpath(COPYRIGHTS)).getText();
     }
 
     public void clickButtonSignin() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(BUTTON_SIGNIN)));
-        // element = driver.findElement(By.xpath(BUTTON_SIGNIN));
         element.click();
     }
 }

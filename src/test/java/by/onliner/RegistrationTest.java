@@ -15,19 +15,6 @@ public class RegistrationTest {
 
         AuthFormPage authFormPage = new AuthFormPage(driver);
         authFormPage.clickLinkRegistor();
-
-        /*RegistrationPage registrationPage = new RegistrationPage(driver);
-        registrationPage.setInputRepeatPassword("1234dfgDRF@$1313131");
-        registrationPage.clickButtonSubmit();
-
-        Assertions.assertEquals("", registrationPage.getErrorMessageEmail());
-        Assertions.assertEquals("", registrationPage.getErrorMessagePassword());
-        Assertions.assertEquals("", registrationPage.getErrorMessageRepeatPassword());*/
-    }
-
-    @Test
-    public void testRG(){
-
     }
 
     @Test

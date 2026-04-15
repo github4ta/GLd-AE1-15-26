@@ -52,7 +52,6 @@ public class AuthFormPage extends ParentPage {
         element.click();
     }
 
-
     public void clickLinkRegistor() {
         driver.findElement(By.xpath(LINK_REGISTOR)).click();
     }
@@ -64,12 +63,15 @@ public class AuthFormPage extends ParentPage {
     public void clickButtonClose() {
         driver.findElement(By.xpath(BUTTON_CLOSE)).click();
     }
+
     public String getErrorMessageName() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_NAME))).getText();
     }
+
     public String getErrorMessagePassword() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_PASSWORD))).getText();
     }
+
     public String getErrorMessageAuth() {
         FluentWait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(30))
@@ -79,4 +81,3 @@ public class AuthFormPage extends ParentPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_AUTH))).getText();
     }
 }
-

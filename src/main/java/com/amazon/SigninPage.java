@@ -18,7 +18,6 @@ public class SigninPage extends BasePage {
     public String getTextSigninTitle() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(SIGNIN_TITLE)));
-        //return driver.findElement(By.xpath(SIGNIN_TITLE)).getText();
         return element.getText();
     }
 }
