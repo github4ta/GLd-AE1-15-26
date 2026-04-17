@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class SearchTest {
     @Test
     public void testSQ003() {
@@ -26,7 +28,7 @@ public class SearchTest {
         searchPage.setInputFullText("adidas");
         String textFirstAdidasProduct = searchPage.verifyFirstResultContainsAdidas();
 
-        Assertions.assertTrue(textFirstAdidasProduct.contains("Adidas"),
+        assertTrue(textFirstAdidasProduct.contains("Adidas"),
                 "Первый товар не содержит 'adidas'. Фактическое название: " + textFirstAdidasProduct);
         driver.quit();
     }
@@ -77,6 +79,6 @@ public class SearchTest {
         searchPage.switchToIframe();
 
         String textLegoPrpduct = searchPage.checkResultContainsLego();
-        Assertions.assertTrue(textLegoPrpduct.contains("Конструктор LEGO 10282 Кроссовки adidas Originals Superstar"), "Первый товар не содержит 'Конструктор LEGO 10282 Кроссовки adidas Originals superstar'. Фактическое название: " + textLegoPrpduct);
+        assertTrue(textLegoPrpduct.contains("Конструктор LEGO 10282 Кроссовки adidas Originals Superstar"),"Первый товар не содержит 'Конструктор LEGO 10282 Кроссовки adidas Originals superstar'. Фактическое название: " + textLegoPrpduct);
     }
 }
