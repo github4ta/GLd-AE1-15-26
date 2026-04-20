@@ -1,37 +1,33 @@
 package by.onliner;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class RegistrationTest {
+public class RegistrationTest extends BaseTest {
+    private AuthFormPage authFormPage;
+    private RegistrationPage registrationPage;
+
+    @BeforeEach
+    public void setupRegistation() {
+        homePage.clickCookies();
+        homePage.clickButtonAuth();
+        authFormPage = new AuthFormPage(driver);
+        authFormPage.clickLinkRegistor();
+        registrationPage = new RegistrationPage(driver);
+    }
+
     @Test
     public void testRG004() {
-        ChromeDriver driver = new ChromeDriver();
-        HomePage homePage = new HomePage(driver);
-
-        homePage.open();
-        homePage.clickButtonAuth();
-
-        AuthFormPage authFormPage = new AuthFormPage(driver);
-        authFormPage.clickLinkRegistor();
+        String actualTitle = registrationPage.getTitleText();
+        Assertions.assertEquals("Регистрация", actualTitle);
     }
 
     @Test
     public void testRG003(){
-        ChromeDriver driver = new ChromeDriver();
-        HomePage homePage = new HomePage(driver);
-        driver.manage().window().maximize();
         String email = "test@test.com";
         String password = "qwerty@147852";
 
-        homePage.open();
-        homePage.clickButtonAuth();
-
-        AuthFormPage authFormPage = new AuthFormPage(driver);
-        authFormPage.clickLinkRegistor();
-
-        RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.setInputEmail(email);
         registrationPage.setInputPassword(password);
         registrationPage.setInputRepeatPassword(password);

@@ -48,6 +48,7 @@ public class HomePage extends BasePage {
         WebDriverWait wait  = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement cookies = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(COOKIES)));
         cookies.click();
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(COOKIES)));
     }
 
     public void fillInputSearch(String data) {
