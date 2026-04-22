@@ -10,8 +10,8 @@ import java.time.Duration;
 
 public class HomePage extends BasePage {
     private final String HOME_URL = "https://www.amazon.com/";
-    private final String COPYRIGHTS = "//div[contains(@class,\"navFooterCopyright\")]/span";
-    private final String BUTTON_SIGNIN = "//span[@id=\"nav-link-accountList-nav-line-1\"]";
+    private final String COPYRIGHTS = "//span[contains(text(), 'Amazon.com, Inc.')]";
+    private final String BUTTON_SIGNIN = "//a[@data-nav-ref='nav_ya_signin']";
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
