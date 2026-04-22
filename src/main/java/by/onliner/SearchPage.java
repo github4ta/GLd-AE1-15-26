@@ -2,6 +2,7 @@ package by.onliner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,7 +21,7 @@ public class SearchPage extends BasePage {
     private final String SEARCH_INPUT_IFRAME_TEXT = "//span[@class='text_match']";
     private final String LEGO_PRODUCT_CARD = "//a[@href='https://catalog.onliner.by/buildingkit/lego/10282']";
 
-    public SearchPage(ChromeDriver driver) {
+    public SearchPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
@@ -43,7 +44,7 @@ public class SearchPage extends BasePage {
     }
 
     public String getKidsBikeText() {
-        return driver.findElement(By.xpath(KIDS_BIKE_LINK)).getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(KIDS_BIKE_LINK))).getText();
     }
 
     public void setSearchInputIframe(Keys value) {
@@ -51,7 +52,7 @@ public class SearchPage extends BasePage {
     }
 
     public String getSearchInputIframeText() {
-        return driver.findElement(By.xpath(SEARCH_INPUT_IFRAME_TEXT)).getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(SEARCH_INPUT_IFRAME_TEXT))).getText();
     }
 
     public String getSearchInputIframePlaceholder() {
