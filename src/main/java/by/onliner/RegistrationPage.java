@@ -1,6 +1,7 @@
 package by.onliner;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,13 +21,13 @@ public class RegistrationPage  extends BasePage {
     private final String ERROR_MESSAGE_REPEAT_PASSWORD = "INPUT_REPEAT_PASSWORD + \"/following::div[contains(text(), 'Укажите пароль')]\"";
     private final String BUTTON_EMAIL_CHECK = "//a[contains(@class,\"auth-button_appendant\")]";
 
-    public RegistrationPage(ChromeDriver driver) {
+    public RegistrationPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public String getTitleText() {
-        return driver.findElement(By.xpath(TITLE)).getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TITLE))).getText();
     }
 
     public void setInputEmail(String email) {
@@ -50,19 +51,18 @@ public class RegistrationPage  extends BasePage {
     }
 
     public String getErrorMessageEmail() {
-        return driver.findElement(By.xpath(ERROR_MESSAGE_EMAIL)).getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_EMAIL))).getText();
     }
 
     public String getErrorMessagePassword() {
-        return driver.findElement(By.xpath(ERROR_MESSAGE_PASSWORD)).getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_PASSWORD))).getText();
     }
 
     public String getErrorMessageRepeatPassword() {
-        return driver.findElement(By.xpath(ERROR_MESSAGE_REPEAT_PASSWORD)).getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ERROR_MESSAGE_REPEAT_PASSWORD))).getText();
     }
 
     public String getButtonEmailCheck() {
-        WebElement buttonEmailCheck = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(BUTTON_EMAIL_CHECK)));
-        return buttonEmailCheck.getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(BUTTON_EMAIL_CHECK))).getText();
     }
 }
