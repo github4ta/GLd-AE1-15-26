@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class SigninPage extends BasePage {
-    private final String SIGNIN_TITLE = "//h1";
+    private final String SIGNIN_TITLE = "//h1[contains(@class, 'a-size-medium-plus')]";
 
     public SigninPage(WebDriver driver) {
         this.driver = driver;

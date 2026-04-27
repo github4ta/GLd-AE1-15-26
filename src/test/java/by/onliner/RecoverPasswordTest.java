@@ -1,134 +1,84 @@
 package by.onliner;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class RecoverPasswordTest {
-	private  ChromeDriver driver;
+    private WebDriver driver;
+    private RecoverPasswordPage recoverPasswordPage;
 
-	@BeforeEach
-	public  void setup(){
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--start-maximized");
-		options.addArguments("--no-sandbox");
-		options.addArguments("--disable-dev-shm-usage");
+    @BeforeEach
+    public void setup() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
 
-		driver = new ChromeDriver(options);
-	}
+        driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+
+        recoverPasswordPage = new RecoverPasswordPage(driver);
+        recoverPasswordPage.open();
+        recoverPasswordPage.clickCookies();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
     @Test
     public void RE002() {
-        ChromeDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-
-        RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage(driver);
-        recoverPasswordPage.open();
-
-        final String USER_NAME_AS_NUMBER = "1" ;
-		recoverPasswordPage.enterUsername(USER_NAME_AS_NUMBER);
+        recoverPasswordPage.setInputEmail("1");
         recoverPasswordPage.clickButtonAuth();
 
-        String actualError = recoverPasswordPage.unregistredUserError();
-        Assertions.assertEquals("Такой пользователь не зарегистрирован", actualError);
+        Assertions.assertEquals("Такой пользователь не зарегистрирован", recoverPasswordPage.getErrorMessageNotRegister());
     }
 
-	@Test
-	public void testRE004() {
-		ChromeDriver driver = new ChromeDriver();
-		HomePage homePage = new HomePage(driver);
-		homePage.open();
-		driver.manage().window().maximize();
-		homePage.clickButtonAuth();
+    @Test
+    public void testRE004() {
+        recoverPasswordPage.setInputEmail("user@user.com");
+        recoverPasswordPage.clickButtonAuth();
 
-		AuthFormPage authFormPage = new AuthFormPage(driver);
-		authFormPage.clickLinkForgotPassword();
+        Assertions.assertEquals("Такой пользователь не зарегистрирован", recoverPasswordPage.getErrorMessageNotRegister());
+    }
 
-		RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage(driver);
-		recoverPasswordPage.setInputEmail("user@user.com");
-		recoverPasswordPage.clickButtonAuth();
+    @Test
+    public void checkUserEmptyData() {
+        recoverPasswordPage.clickButtonAuth();
 
-		Assertions.assertEquals("Такой пользователь не зарегистрирован", recoverPasswordPage.getErrorMessageNotRegister());
-		driver.quit();
-	}
+        Assertions.assertEquals("Укажите ник, e-mail или номер телефона", recoverPasswordPage.getExtendedDescriptionError());
+    }
 
-	@Test
-	public void checkUserEmptyData() {
-		ChromeDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		HomePage homePage = new HomePage(driver);
-		homePage.open();
-		homePage.clickButtonAuth();
+    @Test
+    public void testRE003() {
+        recoverPasswordPage.setInputEmail("test@test.com");
+        recoverPasswordPage.clickButtonAuth();
 
-		AuthFormPage authFormPage = new AuthFormPage(driver);
-		authFormPage.clickLinkForgotPassword();
+        Assertions.assertEquals("Вы не завершили процесс регистрации", recoverPasswordPage.getShowUserNotFinishedRegister());
+    }
 
-		RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage(driver);
-		recoverPasswordPage.clickButtonAuth();
+    @Test
+    public void testRE005() {
+        recoverPasswordPage.setInputEmail("375");
+        recoverPasswordPage.clickButtonAuth();
 
-		String actualErrorMessage = recoverPasswordPage.getExtendedDescriptionError();
-		Assertions.assertEquals("Укажите ник, e-mail или номер телефона", actualErrorMessage);
-		driver.quit();
-	}
+        Assertions.assertEquals("Такой пользователь не зарегистрирован", recoverPasswordPage.getErrorMessageNotRegister());
+    }
 
-	@Test
-	public void testRE003() {
-		ChromeDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		HomePage homePage = new HomePage(driver);
-		homePage.open();
-		homePage.clickButtonAuth();
+    @Test
+    public void testRE006() {
+        recoverPasswordPage.setInputEmail("xyz");
+        recoverPasswordPage.clickButtonAuth();
 
-		AuthFormPage authFormPage = new AuthFormPage(driver);
-		authFormPage.clickLinkForgotPassword();
-
-		RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage(driver);
-		recoverPasswordPage.setInputEmail("test@test.com");
-		recoverPasswordPage.clickButtonAuth();
-
-		Assertions.assertEquals("Вы не завершили процесс регистрации", recoverPasswordPage.getShowUserNotFinishedRegister());
-		driver.quit();
-	}
-
-	@Test
-	public void testRE005(){
-		ChromeDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		HomePage homePage = new HomePage(driver);
-		homePage.open();
-		homePage.clickButtonAuth();
-
-		AuthFormPage authFormPage = new AuthFormPage(driver);
-		authFormPage.clickLinkForgotPassword();
-
-		RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage(driver);
-		recoverPasswordPage.setInputEmail("375");
-		recoverPasswordPage.clickButtonAuth();
-
-		Assertions.assertEquals("Такой пользователь не зарегистрирован", recoverPasswordPage.getErrorMessageNotRegister());
-		driver.quit();
-
-	}
-
-	@Test
-	public void testRE006(){
-		ChromeDriver driver = new ChromeDriver();
-		HomePage homePage = new HomePage(driver);
-		driver.manage().window().maximize();
-		homePage.open();
-		homePage.clickButtonAuth();
-
-		AuthFormPage authFormPage = new AuthFormPage(driver);
-		authFormPage.clickLinkForgotPassword();
-
-		RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage(driver);
-		recoverPasswordPage.setInputEmail("xyz");
-		recoverPasswordPage.clickButtonAuth();
-
-		Assertions.assertEquals("Такой пользователь не зарегистрирован", recoverPasswordPage.getErrorMessageNotRegister());
-		driver.quit();
-	}
+        Assertions.assertEquals("Такой пользователь не зарегистрирован", recoverPasswordPage.getErrorMessageNotRegister());
+    }
 }
 

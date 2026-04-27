@@ -11,16 +11,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class AuthFormPage extends BasePage {
-    private final String TITEL = "//*[@id=\"auth-container\"]/div/div[2]/div/div[1]";
-    private final String INPUT_NAME = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[1]/div/div[2]/div/div/div/div/input";
-    private final String INPUT_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[2]/div/div/div/div/input";
-    private final String BUTTON_SUBMIT = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[3]/button";
-    private final String LINK_REGISTOR = "//a[@href=\"https://profile.onliner.by/registration\"]";
-    private final String LINK_FORGOT_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[4]/div[2]/a";
-    private final String BUTTON_CLOSE = "//*[@id=\"auth-container\"]/div/div[1]/div[2]";
-    private final String ERROR_MESSAGE_NAME = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[1]/div/div[2]/div/div/div[2]/div";
-    private final String ERROR_MESSAGE_PASSWORD = "//*[@id=\"auth-container\"]/div/div[2]/div/form/div[2]/div/div/div[2]/div";
-    private final String ERROR_MESSAGE_AUTH = "/html/body/div[5]/div/div/div/div/div/div/div/div[2]/div/form/div[3]/div";
+    private final String TITEL = "//div[contains(@class, 'auth-form__title')]";
+    private final String INPUT_NAME = "//input[@placeholder='Ник или e-mail']";
+    private final String INPUT_PASSWORD = "//input[@placeholder='Пароль']";
+    private final String BUTTON_SUBMIT = "//button[contains(@class, 'auth-form__button')]";
+    private final String LINK_REGISTOR = "//a[@href='https://profile.onliner.by/registration']";
+    private final String LINK_FORGOT_PASSWORD = "//a[@href='https://profile.onliner.by/recover-password']";
+    private final String BUTTON_CLOSE = "//div[@class='auth-form__close']";
+    private final String ERROR_MESSAGE_NAME = "//div[contains(text(), 'Укажите ник или e-mail')]";
+    private final String ERROR_MESSAGE_PASSWORD = "//div[contains(text(), 'Укажите пароль')]";
+    private final String ERROR_MESSAGE_AUTH = "//div[contains(text(), 'Неверный логин или пароль')]";
 
     public AuthFormPage(WebDriver driver) {
         this.driver = driver;
