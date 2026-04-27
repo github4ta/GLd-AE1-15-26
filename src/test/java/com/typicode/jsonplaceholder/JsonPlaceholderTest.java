@@ -18,4 +18,15 @@ public class JsonPlaceholderTest {
             .statusCode(200)
             .log().all();
     }
+
+    @Test
+    public void testGetPosts1(){
+        final String POSTS1_URL = API_HOME +"/posts/1";
+
+        given()
+        .when()
+                .get(POSTS1_URL)
+                .then()
+                .statusCode(200);
+    }
 }
